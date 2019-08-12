@@ -1,0 +1,13 @@
+img {
+  display: inline-block;
+  max-width: 100%;
+}
+
+img.thumbnail {
+  width: 100px;
+  height: 70px;
+}
+
+div {
+  text-align: center;
+}

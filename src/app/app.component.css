@@ -1,0 +1,22 @@
+#title {
+  border: 1px black solid;
+  background-color: cyan;
+}
+.navPanel {
+  float: left;
+  width: 23%;
+  margin-right: 1%;
+  border: 1px black solid;
+  background-color: cyan;
+}
+.contentPanel {
+  float: left;
+  width: 50%;
+  border: 1px black solid;
+}
+.scrollPanel {
+  float: left;
+  width: 23%;
+  margin-left: 1%;
+  border: 1px black solid;
+}

@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { TopicService } from '../services/topic.service';
+import { Router } from '@angular/router';
+import { Topic } from '../models/topic';
+
+
+@Component({
+  selector: 'app-topic-feed',
+  templateUrl: './topic-feed.component.html',
+  styleUrls: ['./topic-feed.component.css']
+})
+export class TopicFeedComponent implements OnInit {
+  topics: Topic[];
+  id: number;
+
+  constructor(
+    private router: Router,
+    private topicService: TopicService,
+  ) { }
+
+  ngOnInit() {
+    this.getAllTopics();
+  }
+
+  getAllTopics(): void {
+    this.topicService.getTopics()
+    .subscribe( data => this.topics = data);
+  }
+
+  deleteTopic(id: number): void {
+    this.topicService.deleteTopic(id)
+      .subscribe( data => {
+        this.topics = this.topics.filter(t => t.id !== id);
+      });
+  }
+}

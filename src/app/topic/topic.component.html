@@ -1,0 +1,11 @@
+<div class="topicBorder">
+  <button class="button" (click)="deleteTopic()">Delete topic</button>
+  <div><span>id: </span>{{topic.id}}</div>
+  <div><span>creator id: </span>{{topic.creatorID}}</div>
+  <div><span>region id: </span>{{topic.regionID}}</div>
+  <div><span>date: </span>{{topic.topicDate}}</div>
+  <div><span>subject: </span>{{topic.subject}}</div>
+  <div><span>content: </span>{{topic.content}}</div>
+  <button class="button" routerLink='/replies' >Show replies</button>
+  <router-outlet></router-outlet>
+</div>

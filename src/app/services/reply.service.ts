@@ -26,7 +26,7 @@ export class ReplyService {
   public deleteReply(id: number) {
     // const httpParams = new HttpParams().set('id', id.toString());
     // const options = {params: httpParams};
-    return this.http.delete(this.replyUrl + '/remove/?id=' + id, this.httpOptions);
+    return this.http.delete(this.replyUrl + '/remove?id=' + id, this.httpOptions);
   }
 
   /** POST reply on the server */

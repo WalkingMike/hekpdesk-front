@@ -6,6 +6,12 @@
   <div><span>date: </span>{{topic.topicDate}}</div>
   <div><span>subject: </span>{{topic.subject}}</div>
   <div><span>content: </span>{{topic.content}}</div>
-  <button class="button" routerLink='/replies' >Show replies</button>
-  <router-outlet></router-outlet>
+  <button class="button" (click)="switchShowReply()" >Show replies</button>
+  <button class="button" (click)="switchAddReply()" >Add reply</button>
+  <div *ngIf="showReply">
+    <app-reply-list [topic]='this.topic'></app-reply-list>
+  </div>
+  <div *ngIf="addReply">
+    <app-reply-creation [topic]='this.topic'></app-reply-creation>
+  </div>
 </div>

@@ -26,7 +26,7 @@ export class RegionService {
   public deleteRegion(id: number) {
     // const httpParams = new HttpParams().set('id', id.toString());
     // const options = {params: httpParams};
-    return this.http.delete(this.regionUrl + '/remove/?id=' + id, this.httpOptions);
+    return this.http.delete(this.regionUrl + '/remove?id=' + id, this.httpOptions);
   }
 
   /** POST region on the server */

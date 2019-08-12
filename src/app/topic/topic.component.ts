@@ -11,7 +11,8 @@ import { TopicFeedComponent } from '../topic-feed/topic-feed.component';
 })
 export class TopicComponent implements OnInit {
   @Input() topic: Topic;
-
+  showReply: boolean;
+  addReply: boolean;
 
   constructor(
     private topicService: TopicService,
@@ -23,5 +24,13 @@ export class TopicComponent implements OnInit {
 
   deleteTopic(): void {
     this.topicFeed.deleteTopic(this.topic.id);
+  }
+
+  switchShowReply(): void {
+    this.showReply = ! this.showReply;
+  }
+
+  switchAddReply(): void {
+    this.addReply = ! this.addReply;
   }
 }

@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReplyService } from '../services/reply.service';
 import { Reply } from '../models/reply';
-import { NgForOf } from '@angular/common';
 import { Topic } from '../models/topic';
+
 
 @Component({
   selector: 'app-reply-list',
@@ -12,7 +12,7 @@ import { Topic } from '../models/topic';
 })
 export class ReplyListComponent implements OnInit {
   @Input() topic: Topic;
-  replies: Reply[];
+  replies: Reply[] = [];
 
   constructor(
     private router: Router,
@@ -26,10 +26,28 @@ export class ReplyListComponent implements OnInit {
   getAllReplies(): void {
     this.replyService.getReplies()
     .subscribe( data => data
-      .forEach(element => {
+      .forEach( element => {
         if (element.topicID === this.topic.id) { this.replies.push(element); }
       }));
   }
+
+  // getAllReplies(): void {
+  //   this.replies$ = this.replyService.getReplies();
+  //   this.replies$.subscribe();
+  // }
+
+  // getActualReplies(): Reply[] {
+  //   const replies: Reply[] = [];
+  //   this.replies$.subscribe( data => data
+  //     .forEach( element => {
+  //       if (element.topicID === this.topic.id) { replies.push(element); }
+  //     }));
+  //   return replies;
+  // }
+
+  // deleteReply(id: number): void {
+  //   this.replyService.deleteReply(id).subscribe();
+  // }
 
   deleteReply(id: number): void {
     this.replyService.deleteReply(id)

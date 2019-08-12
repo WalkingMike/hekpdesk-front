@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Location } from '@angular/common';
 import { TopicService } from '../services/topic.service';
+import { Topic } from '../models/topic';
 
 
 @Component({
@@ -20,6 +21,10 @@ export class TopicCreationComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
+    const topic: Topic = new Topic();
+    topic.subject = f.value.subject;
+    topic.content = f.value.content;
+    topic.topicDate = new Date();
     this.topicService.createTopic(f.value).subscribe();
     this.goBack();
   }

@@ -30,7 +30,7 @@ export class UserService {
   public deleteUser(id: number) {
     // const httpParams = new HttpParams().set('id', id.toString());
     // const options = {params: httpParams};
-    return this.http.delete(this.userUrl + '/remove/?id=' + id, this.httpOptions);
+    return this.http.delete(this.userUrl + '/remove?id=' + id, this.httpOptions);
   }
 
   /** POST user on the server */

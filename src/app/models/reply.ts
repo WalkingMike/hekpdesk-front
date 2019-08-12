@@ -1,6 +1,6 @@
 export class Reply {
   id: number;
-  replyContent: string;
+  replyText: string;
   replyDate: Date;
   authorID: number;
   topicID: number;

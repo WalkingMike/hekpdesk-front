@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { TopicFeedComponent } from './topic-feed/topic-feed.component';
 import { TopicCreationComponent } from './topic-creation/topic-creation.component';
 import { ReplyListComponent } from './reply-list/reply-list.component';
+import { ReplyCreationComponent } from './reply-creation/reply-creation.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ReplyListComponent } from './reply-list/reply-list.component';
     HomeComponent,
     TopicFeedComponent,
     TopicCreationComponent,
-    ReplyListComponent
+    ReplyListComponent,
+    ReplyCreationComponent
   ],
   imports: [
     AppRoutingModule,

@@ -25,7 +25,7 @@ export class RoleService {
   public deleteRole(id: number) {
     // const httpParams = new HttpParams().set('id', id.toString());
     // const options = {params: httpParams};
-    return this.http.delete(this.roleUrl + '/remove/?id=' + id, this.httpOptions);
+    return this.http.delete(this.roleUrl + '/remove?id=' + id, this.httpOptions);
   }
 
   /** POST role on the server */

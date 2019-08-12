@@ -1,9 +1,8 @@
 <div class="replyBorder">
-    <button id="back" (click)="goBack()">Back</button>
     <div><span>id: </span>{{reply.id}}</div>
     <div><span>author id: </span>{{reply.authorID}}</div>
     <div><span>topic id: </span>{{reply.topicID}}</div>
-    <div><span>content: </span>{{reply.replyContent}}</div>
+    <div><span>content: </span>{{reply.replyText}}</div>
     <div><span>date: </span>{{reply.replyDate}}</div>
     <button class="button" (click)="deleteReply()">Delete reply</button>
   </div>

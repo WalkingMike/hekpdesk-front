@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ReplyService } from '../services/reply.service';
 import { Reply } from '../models/reply';
-import { Location } from '@angular/common';
+import { ReplyListComponent } from '../reply-list/reply-list.component';
+
 
 @Component({
   selector: 'app-reply',
@@ -12,19 +12,14 @@ export class ReplyComponent implements OnInit {
   @Input() reply: Reply;
 
   constructor(
-    private replyService: ReplyService,
-    private location: Location,
+    private replyList: ReplyListComponent,
   ) { }
 
   ngOnInit() {
   }
 
   deleteReply(): void {
-    this.replyService.deleteReply(this.reply.id).subscribe();
-  }
-
-  goBack(): void {
-    this.location.back();
+    this.replyList.deleteReply(this.reply.id);
   }
 
 }

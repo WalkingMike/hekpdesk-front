@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
@@ -15,11 +16,14 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUser(10);
   }
 
   getUser(id: number): void {
     this.userService.getUserByID(id).subscribe(usr => this.user = usr);
+  }
+
+  onSubmit(f: NgForm) {
+    this.getUser(f.value.id);
   }
 
 }

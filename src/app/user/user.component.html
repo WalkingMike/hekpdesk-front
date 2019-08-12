@@ -1,5 +1,7 @@
 <div class="userBorder">
-  <div><span>id: </span>{{user.id}}</div>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+    <p>id: <input type="number" name="id" ngModel></p>
+  </form>
   <div><span>register date: </span>{{user.registerDate}}</div>
   <div><span>region id: </span>{{user.regionID}}</div>
   <div><span>role id: </span>{{user.roleID}}</div>

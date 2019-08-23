@@ -1,5 +1,4 @@
 <div class="replyBorder">
-    <hr>
     <div class="row">
         <div class="column"><span>id: </span>{{reply.id}}</div>
         <button class="button" (click)="deleteReply()">Delete reply</button>
@@ -9,6 +8,7 @@
       <div class="column"><span>date: </span>{{reply.replyDate | date:"dd.MM.yy, HH:mm"}}</div>
       <div class="column"><span>topic id: </span>{{reply.topicID}}</div>
     </div>
+    <hr>
     <div><span>content: </span>{{reply.replyText}}</div>
     <hr>
 </div>

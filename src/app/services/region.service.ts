@@ -22,6 +22,11 @@ export class RegionService {
     return this.http.get<Region[]>(this.regionUrl + '/selectall');
   }
 
+  /** GET regionID from the server */
+  public getRegionID(region: string): Observable<number> {
+    return this.http.get<number>(this.regionUrl + '/?name=' + region);
+  }
+
   /** DELETE region from the server */
   public deleteRegion(id: number) {
     // const httpParams = new HttpParams().set('id', id.toString());

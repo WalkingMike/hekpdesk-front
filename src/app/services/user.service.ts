@@ -28,7 +28,7 @@ export class UserService {
 
    /** GET user by Login from the server */
    public getUserByLogin(login: string): Observable<User> {
-    return this.http.get<User>(this.userUrl + '/?login=' + login);
+    return this.http.get<User>(this.userUrl + 'Login/?login=' + login);
   }
 
   /** DELETE user from the server */

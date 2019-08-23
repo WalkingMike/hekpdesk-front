@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Topic } from '../models/topic';
 import { TopicFeedComponent } from '../topic-feed/topic-feed.component';
+import { TokenStorageService } from '../auth/services/token-storage.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -12,12 +14,19 @@ export class TopicComponent implements OnInit {
   @Input() topic: Topic;
   showReply: boolean;
   addReply: boolean;
+  authority: string;
+  currentUserID: number;
 
   constructor(
-    private topicFeed: TopicFeedComponent
+    private topicFeed: TopicFeedComponent,
+    private tokenStorage: TokenStorageService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.authority = this.tokenStorage.getAuthority();
+    this.userService.getUserByLogin(this.tokenStorage.getLogin())
+      .subscribe(user => this.currentUserID = user.id);
   }
 
   deleteTopic(): void {

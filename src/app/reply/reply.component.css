@@ -1,10 +1,14 @@
 .replyBorder {
   border: 1px solid grey;
+  width: 80%;
 }
 .column {
   float: left;
   width: 32%;
   padding: 1px;
+}
+.row{
+  height: 80%;
 }
 .row:after {
   content: "";

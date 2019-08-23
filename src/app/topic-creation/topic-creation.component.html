@@ -6,7 +6,10 @@
           Region:
         </div>
         <div class="column2">
-          <input type="number" name="region" ngModel>
+          <select name="selectedRegion" ngModel>
+              <option *ngFor="let x of regions" value="x">{{x.region}}</option>
+          </select>
+          <!-- <input type="number" name="region" ngModel> -->
         </div>
     </div>
     <div class="row">

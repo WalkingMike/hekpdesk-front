@@ -2,16 +2,18 @@
   <div id="head"><span>subject: </span>{{topic.subject}}</div>
   <div class="row">
       <div class="column"><span>id: </span>{{topic.id}}</div>
-      <button id="deltop" class="button" (click)="deleteTopic()">Delete topic</button>
+      <button *ngIf="authority === 'admin' || currentUserID === topic.creatorID" id="deltop" class="button" (click)="deleteTopic()">Delete topic</button>
   </div>
   <div class="row">
     <div class="column"><span>creator id: </span>{{topic.creatorID}}</div>
     <div class="column" *ngIf="topic.topicDate != null"><span>date: </span>{{topic.topicDate | date:"dd.MM.yy, HH:mm"}}</div>
     <div class="column"><span>region id: </span>{{topic.regionID}}</div>
   </div>
+  <hr>
   <div><span>content: </span>{{topic.content}}</div>
+  <hr>
   <button class="buttonBot" (click)="switchShowReply()" >Show replies</button>
-  <button class="buttonBot" (click)="switchAddReply()" >Add reply</button>
+  <button *ngIf="authority !== 'lurker'" class="buttonBot" (click)="switchAddReply()" >Add reply</button>
   <div *ngIf="showReply">
     <app-reply-list [topic]='this.topic'></app-reply-list>
   </div>

@@ -24,8 +24,9 @@ export class TopicCreationComponent implements OnInit {
     const topic: Topic = new Topic();
     topic.subject = f.value.subject;
     topic.content = f.value.content;
+    topic.regionID = f.value.region;
     topic.topicDate = new Date();
-    this.topicService.createTopic(f.value).subscribe();
+    this.topicService.createTopic(topic).subscribe();
     this.goBack();
   }
 

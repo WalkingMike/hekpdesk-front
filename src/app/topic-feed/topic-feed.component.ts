@@ -12,6 +12,7 @@ import { Topic } from '../models/topic';
 export class TopicFeedComponent implements OnInit {
   topics: Topic[];
   id: number;
+  region: number;
 
   constructor(
     private router: Router,
@@ -25,6 +26,13 @@ export class TopicFeedComponent implements OnInit {
   getAllTopics(): void {
     this.topicService.getTopics()
     .subscribe( data => this.topics = data);
+  }
+
+  showRegion(region: number): void {
+    this.topicService.getTopics()
+    .subscribe( data => {
+      this.topics = this.topics.filter(t => t.regionID === region);
+    });
   }
 
   deleteTopic(id: number): void {

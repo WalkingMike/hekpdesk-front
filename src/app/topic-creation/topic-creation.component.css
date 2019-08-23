@@ -1,0 +1,26 @@
+#content {
+  overflow-y: scroll;
+  height: 100px;
+  resize: none;
+  width: 75%;
+}
+.column1 {
+  text-align: right;
+  float: left;
+  width: 25%;
+  padding: 2px;
+}
+.column2 {
+  float: left;
+  width: 70%;
+  padding: 2px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+#buttonBot {
+  width: 70%;
+  height: 35px;
+}

@@ -26,10 +26,13 @@ export class UserService {
     return this.http.get<User>(this.userUrl + '/?id=' + id);
   }
 
+   /** GET user by Login from the server */
+   public getUserByLogin(login: string): Observable<User> {
+    return this.http.get<User>(this.userUrl + '/?login=' + login);
+  }
+
   /** DELETE user from the server */
   public deleteUser(id: number) {
-    // const httpParams = new HttpParams().set('id', id.toString());
-    // const options = {params: httpParams};
     return this.http.delete(this.userUrl + '/remove?id=' + id, this.httpOptions);
   }
 

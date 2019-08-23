@@ -1,6 +1,27 @@
+div {
+  word-wrap: break-word;
+  font-style: bold;
+}
 .topicBorder {
   border: 1px black solid;
   margin: 3px;
   text-align: center;
   background-color: lightblue;
+}
+#deltop{
+  float: right;
+}
+.column {
+  float: left;
+  width: 32%;
+  padding: 2px;
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.buttonBot {
+  width: 50%;
+  height: 28px;
 }

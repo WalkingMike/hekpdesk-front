@@ -1,5 +1,10 @@
-<ul class="repls">
-  <li *ngFor="let reply of replies">
-    <app-reply [reply]="reply"></app-reply>
-  </li>
-</ul>
+<div *ngIf="replies">
+  <ul class="repls">
+    <li *ngFor="let reply of replies">
+      <app-reply [reply]="reply"></app-reply>
+    </li>
+  </ul>
+</div>
+<div *ngIf="replies.length === 0">
+  No replies. Be the first to comment!
+</div>

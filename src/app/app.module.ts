@@ -13,6 +13,9 @@ import { TopicFeedComponent } from './topic-feed/topic-feed.component';
 import { TopicCreationComponent } from './topic-creation/topic-creation.component';
 import { ReplyListComponent } from './reply-list/reply-list.component';
 import { ReplyCreationComponent } from './reply-creation/reply-creation.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { httpInterceptorProviders } from './auth/services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { ReplyCreationComponent } from './reply-creation/reply-creation.componen
     TopicFeedComponent,
     TopicCreationComponent,
     ReplyListComponent,
-    ReplyCreationComponent
+    ReplyCreationComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     AppRoutingModule,
@@ -32,7 +37,7 @@ import { ReplyCreationComponent } from './reply-creation/reply-creation.componen
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

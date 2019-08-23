@@ -1,8 +1,14 @@
 <div class="replyBorder">
-    <div><span>id: </span>{{reply.id}}</div>
-    <div><span>author id: </span>{{reply.authorID}}</div>
-    <div><span>topic id: </span>{{reply.topicID}}</div>
+    <hr>
+    <div class="row">
+        <div class="column"><span>id: </span>{{reply.id}}</div>
+        <button class="button" (click)="deleteReply()">Delete reply</button>
+      </div>
+    <div class="row">
+      <div class="column"><span>author id: </span>{{reply.authorID}}</div>
+      <div class="column"><span>date: </span>{{reply.replyDate | date:"dd.MM.yy, HH:mm"}}</div>
+      <div class="column"><span>topic id: </span>{{reply.topicID}}</div>
+    </div>
     <div><span>content: </span>{{reply.replyText}}</div>
-    <div><span>date: </span>{{reply.replyDate}}</div>
-    <button class="button" (click)="deleteReply()">Delete reply</button>
-  </div>
+    <hr>
+</div>

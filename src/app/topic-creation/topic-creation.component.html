@@ -1,8 +1,35 @@
 <div>
   <button id="back" (click)="goBack()">Back</button>
   <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-    <p>Subject: <input type="text" name="subject" ngModel></p>
-    <p>Content: <input type="text" name="content" ngModel></p>
-    <button>Create</button>
+    <div class="row">
+        <div class="column1">
+          Region:
+        </div>
+        <div class="column2">
+          <input type="number" name="region" ngModel>
+        </div>
+    </div>
+    <div class="row">
+      <div class="column1">
+        Subject:
+      </div>
+      <div class="column2">
+        <input id="head" type="text" name="subject" ngModel>
+    </div>
+    </div>
+    <div class="row">
+      <div class="column1">
+        Content:
+      </div>
+      <div class="column2">
+        <textarea id="content" name="content" ngModel></textarea>
+    </div>
+    </div>
+    <div class="row">
+        <div class="column1"></div>
+        <div class="column2">
+            <button id="buttonBot">Create</button>
+        </div>
+    </div>
   </form>
 </div>

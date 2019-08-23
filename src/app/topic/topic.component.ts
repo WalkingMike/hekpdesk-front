@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Topic } from '../models/topic';
-import { TopicService } from '../services/topic.service';
 import { TopicFeedComponent } from '../topic-feed/topic-feed.component';
 
 
@@ -15,8 +14,7 @@ export class TopicComponent implements OnInit {
   addReply: boolean;
 
   constructor(
-    private topicService: TopicService,
-    private topicFeed: TopicFeedComponent,
+    private topicFeed: TopicFeedComponent
   ) { }
 
   ngOnInit() {

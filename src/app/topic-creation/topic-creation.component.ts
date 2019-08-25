@@ -5,6 +5,8 @@ import { TopicService } from '../services/topic.service';
 import { Topic } from '../models/topic';
 import { RegionService } from '../services/region.service';
 import { Region } from '../models/region';
+import { UserService } from '../services/user.service';
+import { TokenStorageService } from '../auth/services/token-storage.service';
 
 
 @Component({
@@ -15,10 +17,13 @@ import { Region } from '../models/region';
 export class TopicCreationComponent implements OnInit {
   regions: Region[];
   selectedRegion: Region;
+  topic: Topic = new Topic();
 
   constructor(
     private topicService: TopicService,
     private regionService: RegionService,
+    private userService: UserService,
+    private tokenStorage: TokenStorageService,
     private location: Location
   ) { }
 
@@ -26,16 +31,17 @@ export class TopicCreationComponent implements OnInit {
     this.regionService.getRegions().subscribe(
       regs => this.regions = regs
     );
+    this.userService.getUserByLogin(this.tokenStorage.getLogin()).subscribe(
+      user => this.topic.creatorID = user.id
+    );
   }
 
   onSubmit(f: NgForm) {
-    const topic: Topic = new Topic();
-    topic.subject = f.value.subject;
-    topic.content = f.value.content;
-    console.log(f.value.selectedRegion.id);
-    topic.regionID = f.value.selectedRegion.id;
-    topic.topicDate = new Date();
-    this.topicService.createTopic(topic).subscribe();
+    this.topic.subject = f.value.subject;
+    this.topic.content = f.value.content;
+    this.topic.regionID = f.value.selectedRegion.id;
+    this.topic.topicDate = new Date();
+    this.topicService.createTopic(this.topic).subscribe();
     this.goBack();
   }
 

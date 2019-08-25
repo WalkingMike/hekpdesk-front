@@ -12,6 +12,8 @@ import { Topic } from '../models/topic';
 })
 export class ReplyListComponent implements OnInit {
   @Input() topic: Topic;
+  @Input() authority: string;
+  @Input() currentUserID: number;
   replies: Reply[] = [];
 
   constructor(

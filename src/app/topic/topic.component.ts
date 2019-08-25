@@ -25,8 +25,10 @@ export class TopicComponent implements OnInit {
 
   ngOnInit() {
     this.authority = this.tokenStorage.getAuthority();
-    this.userService.getUserByLogin(this.tokenStorage.getLogin())
-      .subscribe(user => this.currentUserID = user.id);
+    if (this.tokenStorage.getToken()) {
+      this.userService.getUserByLogin(this.tokenStorage.getLogin())
+        .subscribe(user => this.currentUserID = user.id);
+    }
   }
 
   deleteTopic(): void {

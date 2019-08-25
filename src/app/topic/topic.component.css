@@ -6,6 +6,8 @@ div {
   border: 1px black solid;
   margin: 3px;
   text-align: center;
+}
+.topicBody {
   background-color: lightblue;
 }
 #deltop{

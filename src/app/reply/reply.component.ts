@@ -10,6 +10,9 @@ import { ReplyListComponent } from '../reply-list/reply-list.component';
 })
 export class ReplyComponent implements OnInit {
   @Input() reply: Reply;
+  @Input() num: number;
+  @Input() authority: string;
+  @Input() currentUserID: number;
 
   constructor(
     private replyList: ReplyListComponent,

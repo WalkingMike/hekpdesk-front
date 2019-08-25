@@ -1,7 +1,7 @@
 <div *ngIf="replies">
   <ul class="repls">
     <li *ngFor="let reply of replies">
-      <app-reply [reply]="reply"></app-reply>
+      <app-reply [reply]="reply" [num]="0" [authority]='this.authority' [currentUserID]='currentUserID'></app-reply>
     </li>
   </ul>
 </div>

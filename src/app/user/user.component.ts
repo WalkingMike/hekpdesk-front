@@ -18,12 +18,12 @@ export class UserComponent implements OnInit {
   ngOnInit() {
   }
 
-  getUser(id: number): void {
-    this.userService.getUserByID(id).subscribe(usr => this.user = usr);
+  getUser(login: string): void {
+    this.userService.getUserByLogin(login).subscribe(usr => this.user = usr);
   }
 
   onSubmit(f: NgForm) {
-    this.getUser(f.value.id);
+    this.getUser(f.value.login);
   }
 
 }

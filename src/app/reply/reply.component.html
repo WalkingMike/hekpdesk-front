@@ -1,7 +1,8 @@
 <div class="replyBorder">
     <div class="row">
+        <div class="column">#{{num}}</div>
         <div class="column"><span>id: </span>{{reply.id}}</div>
-        <button class="button" (click)="deleteReply()">Delete reply</button>
+        <button *ngIf="this.authority === 'admin' || currentUserID === reply.authorID" class="button" (click)="deleteReply()">Delete reply</button>
       </div>
     <div class="row">
       <div class="column"><span>author id: </span>{{reply.authorID}}</div>

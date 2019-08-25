@@ -3,6 +3,8 @@ import { TopicService } from '../services/topic.service';
 import { Router } from '@angular/router';
 import { Topic } from '../models/topic';
 import { TokenStorageService } from '../auth/services/token-storage.service';
+import { Region } from '../models/region';
+import { RegionService } from '../services/region.service';
 
 
 @Component({
@@ -13,17 +15,22 @@ import { TokenStorageService } from '../auth/services/token-storage.service';
 export class TopicFeedComponent implements OnInit {
   topics: Topic[];
   id: number;
-  region: number;
+  regionID: number;
+  regions: Region[] = [];
   authority: string;
 
   constructor(
     private router: Router,
     private topicService: TopicService,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private regionService: RegionService
   ) { }
 
   ngOnInit() {
     this.getAllTopics();
+    this.regionService.getRegions().subscribe(
+      regs => this.regions = regs
+    );
     this.authority = this.tokenStorage.getAuthority();
   }
 
@@ -33,6 +40,7 @@ export class TopicFeedComponent implements OnInit {
   }
 
   showRegion(region: number): void {
+    console.log(region);
     this.topicService.getTopics()
     .subscribe( data => {
       this.topics = this.topics.filter(t => t.regionID === region);

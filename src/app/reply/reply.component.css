@@ -1,6 +1,8 @@
 .replyBorder {
+  margin: -2px;
   border: 1px solid grey;
-  width: 80%;
+  width: 90%;
+  background-color: lightblue;
 }
 .column {
   float: left;

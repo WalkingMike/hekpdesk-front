@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
     this.authority = 'lurker';
     if (this.tokenStorage.getToken()) {
         this.authority = this.tokenStorage.getAuthority();
-        console.log(this.authority);
         return true;
     }
   }

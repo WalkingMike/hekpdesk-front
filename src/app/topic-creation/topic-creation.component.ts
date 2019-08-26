@@ -16,7 +16,6 @@ import { TokenStorageService } from '../auth/services/token-storage.service';
 })
 export class TopicCreationComponent implements OnInit {
   regions: Region[];
-  selectedRegion: Region;
   topic: Topic = new Topic();
 
   constructor(
@@ -39,7 +38,6 @@ export class TopicCreationComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.topic.subject = f.value.subject;
     this.topic.content = f.value.content;
-    this.topic.regionID = f.value.selectedRegion.id;
     this.topic.topicDate = new Date();
     this.topicService.createTopic(this.topic).subscribe();
     this.goBack();

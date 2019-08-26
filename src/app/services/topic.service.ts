@@ -22,6 +22,11 @@ export class TopicService {
     return this.http.get<Topic[]>(this.topicUrl + '/selectall');
   }
 
+  /** GET topics by region from the server */
+  public getTopicsByRegion(id: number): Observable<Topic[]> {
+    return this.http.get<Topic[]>(this.topicUrl + '/selectall/region?id=' + id);
+  }
+
   /** DELETE topic from the server */
   public deleteTopic(id: number) {
     // const httpParams = new HttpParams().set('id', id.toString());

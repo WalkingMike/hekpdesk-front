@@ -26,6 +26,10 @@ export class UserService {
     return this.http.get<User>(this.userUrl + '/?id=' + id);
   }
 
+  public getUserNameLoginByID(id: number): Observable<string[]> {
+    return this.http.get<string[]>(this.userUrl + 'NameLogin/?id=' + id);
+  }
+
    /** GET user by Login from the server */
    public getUserByLogin(login: string): Observable<User> {
     return this.http.get<User>(this.userUrl + 'Login/?login=' + login);

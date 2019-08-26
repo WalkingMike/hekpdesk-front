@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { NgForm } from '@angular/forms';
+import { TokenStorageService } from '../auth/services/token-storage.service';
 
 @Component({
   selector: 'app-user',
@@ -10,12 +11,15 @@ import { NgForm } from '@angular/forms';
 })
 export class UserComponent implements OnInit {
   user: User = new User();
+  authority = '';
 
   constructor(
     private userService: UserService,
+    private tokenStorage: TokenStorageService
   ) { }
 
   ngOnInit() {
+    this.authority = this.tokenStorage.getAuthority();
   }
 
   getUser(login: string): void {

@@ -1,10 +1,10 @@
-<div *ngIf="replies">
+<div *ngIf="replies.length > 0">
   <ul class="repls">
     <li *ngFor="let reply of replies">
       <app-reply [reply]="reply" [num]="0" [authority]='this.authority' [currentUserID]='currentUserID'></app-reply>
     </li>
   </ul>
 </div>
-<div *ngIf="replies.length === 0">
+<div class="NoReplies" *ngIf="replies.length === 0">
   No replies. Be the first to comment!
 </div>

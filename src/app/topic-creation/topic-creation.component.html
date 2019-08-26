@@ -6,8 +6,8 @@
           Region:
         </div>
         <div class="column2">
-          <select name="selectedRegion" ngModel>
-              <option *ngFor="let x of regions" value="x">{{x.region}}</option>
+          <select [(ngModel)]="this.topic.regionID" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let reg of regions" [ngValue]="reg.id">{{reg.region}}</option>
           </select>
         </div>
     </div>

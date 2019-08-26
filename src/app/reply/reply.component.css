@@ -20,3 +20,10 @@
 .button {
   float: right;
 }
+.content {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  text-align: left;
+}

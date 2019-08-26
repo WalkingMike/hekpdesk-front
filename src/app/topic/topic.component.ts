@@ -3,6 +3,8 @@ import { Topic } from '../models/topic';
 import { TopicFeedComponent } from '../topic-feed/topic-feed.component';
 import { TokenStorageService } from '../auth/services/token-storage.service';
 import { UserService } from '../services/user.service';
+import { User } from '../models/user';
+import { Region } from '../models/region';
 
 
 @Component({
@@ -12,10 +14,13 @@ import { UserService } from '../services/user.service';
 })
 export class TopicComponent implements OnInit {
   @Input() topic: Topic;
+  @Input() regions: Region[];
+  topicRegion = '';
   showReply: boolean;
   addReply: boolean;
   authority: string;
   currentUserID: number;
+  creator: string[] = [];
 
   constructor(
     private topicFeed: TopicFeedComponent,
@@ -29,6 +34,12 @@ export class TopicComponent implements OnInit {
       this.userService.getUserByLogin(this.tokenStorage.getLogin())
         .subscribe(user => this.currentUserID = user.id);
     }
+    this.userService.getUserNameLoginByID(this.topic.creatorID).subscribe(
+      data => this.creator = data
+    );
+    this.regions.forEach( reg => {
+      if (this.topic.regionID === reg.id) { this.topicRegion = reg.region; }
+    });
   }
 
   deleteTopic(): void {

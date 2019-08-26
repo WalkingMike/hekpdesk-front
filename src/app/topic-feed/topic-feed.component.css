@@ -2,6 +2,10 @@ ul {
   list-style: none;
   padding: 5px;
 }
-form {
+#delInput{
+  width: 65px;
+}
+.menu > *  {
   display: inline;
 }
+

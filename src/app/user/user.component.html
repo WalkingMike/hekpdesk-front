@@ -1,11 +1,13 @@
 <div class="userBorder">
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-    <p>login: <input type="string" name="login" ngModel></p>
-  </form>
-  <div><span>register date: </span>{{user.registerDate}}</div>
-  <div><span>region id: </span>{{user.regionID}}</div>
-  <div><span>role id: </span>{{user.roleID}}</div>
-  <div><span>name: </span>{{user.name}}</div>
-  <div><span>id: </span>{{user.id}}</div>
-  <div><span>password: </span>{{user.password}}</div>
+  <div *ngIf="authority === 'admin'" class="adminOpt">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+      <p>login: <input type="string" name="login" ngModel></p>
+    </form>
+    <div><span>register date: </span>{{user.registerDate}}</div>
+    <div><span>region id: </span>{{user.regionID}}</div>
+    <div><span>role id: </span>{{user.roleID}}</div>
+    <div><span>name: </span>{{user.name}}</div>
+    <div><span>id: </span>{{user.id}}</div>
+    <div><span>password: </span>{{user.password}}</div>
+  </div>
 </div>

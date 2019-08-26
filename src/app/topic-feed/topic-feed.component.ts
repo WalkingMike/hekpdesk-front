@@ -32,19 +32,21 @@ export class TopicFeedComponent implements OnInit {
       regs => this.regions = regs
     );
     this.authority = this.tokenStorage.getAuthority();
+    this.regionID = -1;
   }
 
   getAllTopics(): void {
     this.topicService.getTopics()
     .subscribe( data => this.topics = data);
+    this.regionID = -1;
   }
 
   showRegion(region: number): void {
-    console.log(region);
-    this.topicService.getTopics()
-    .subscribe( data => {
-      this.topics = this.topics.filter(t => t.regionID === region);
-    });
+    if (region !== -1) {
+      this.topicService.getTopicsByRegion(region).subscribe(
+        data => this.topics = data
+      );
+    }
   }
 
   deleteTopic(id: number): void {

@@ -1,15 +1,12 @@
 <div class="replyBorder">
     <div class="row">
-        <div class="column">#{{num}}</div>
-        <div class="column"><span>id: </span>{{reply.id}}</div>
+        <div class="column" *ngIf="this.authority === 'admin'" ><span>id: </span>{{reply.id}}</div>
         <button *ngIf="this.authority === 'admin' || currentUserID === reply.authorID" class="button" (click)="deleteReply()">Delete reply</button>
       </div>
     <div class="row">
-      <div class="column"><span>author id: </span>{{reply.authorID}}</div>
-      <div class="column"><span>date: </span>{{reply.replyDate | date:"dd.MM.yy, HH:mm"}}</div>
-      <div class="column"><span>topic id: </span>{{reply.topicID}}</div>
+      <div class="column">{{author[0]}} ({{author[1]}}) {{reply.replyDate | date:"dd.MM.yy, HH:mm"}}</div>
     </div>
     <hr>
-    <div class="content"><span>content: </span>{{reply.replyText}}</div>
+    <div class="content">{{reply.replyText}}</div>
     <hr>
 </div>

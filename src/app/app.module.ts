@@ -16,6 +16,7 @@ import { ReplyCreationComponent } from './reply-creation/reply-creation.componen
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { httpInterceptorProviders } from './auth/services/auth-interceptor.service';
+import { AuthGuardService } from './auth/services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { httpInterceptorProviders } from './auth/services/auth-interceptor.servi
     FormsModule,
     HttpClientModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,17 @@
 .replyCreationBorder {
+  margin-left: 2px;
+  padding: 0;
+  border: 1px solid grey;
+  width: 90%;
   background-color: lightblue;
+}
+#replyInput {
+  width: 50%;
+}
+#replyContent {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  text-align: left;
 }

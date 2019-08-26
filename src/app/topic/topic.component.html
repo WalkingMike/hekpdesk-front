@@ -6,12 +6,11 @@
         <button *ngIf="authority === 'admin' || currentUserID === topic.creatorID" id="deltop" class="button" (click)="deleteTopic()">Delete topic</button>
     </div>
     <div class="row">
-      <div class="column"><span>creator: </span>{{creator[0]}} ({{creator[1]}})</div>
-      <div class="column"><span>date: </span>{{topic.topicDate | date:"dd.MM.yy, HH:mm"}}</div>
+      <div class="column">{{creator[0]}} ({{creator[1]}})  {{topic.topicDate | date:"dd.MM.yy, HH:mm"}}</div>
       <div class="column"><span>region: </span>{{topicRegion}}</div>
     </div>
     <hr>
-    <div class="content"><span>content: </span> <br> {{topic.content}}</div>
+    <div class="content">{{topic.content}}</div>
     <hr>
     <button class="buttonBot" (click)="switchShowReply()" >Show replies</button>
     <button *ngIf="authority !== 'lurker'" class="buttonBot" (click)="switchAddReply()" >Add reply</button>

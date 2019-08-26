@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Reply } from '../models/reply';
 import { ReplyListComponent } from '../reply-list/reply-list.component';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -10,15 +11,19 @@ import { ReplyListComponent } from '../reply-list/reply-list.component';
 })
 export class ReplyComponent implements OnInit {
   @Input() reply: Reply;
-  @Input() num: number;
   @Input() authority: string;
   @Input() currentUserID: number;
+  author: string[] = [];
 
   constructor(
     private replyList: ReplyListComponent,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.userService.getUserNameLoginByID(this.reply.authorID).subscribe(
+      data => this.author = data
+    );
   }
 
   deleteReply(): void {

@@ -7,14 +7,17 @@ import { TopicCreationComponent } from './topic-creation/topic-creation.componen
 import { ReplyComponent } from './reply/reply.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuardService as AuthGuard } from './auth/services/auth-guard.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'topics', component: TopicFeedComponent },
-  { path: 'topics/create', component: TopicCreationComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'topics', component: TopicFeedComponent, },
+  { path: 'topics/create', component: TopicCreationComponent,
+    canActivate: [AuthGuard] },
+  { path: 'user', component: UserComponent,
+    canActivate: [AuthGuard] },
   { path: 'reply', component: ReplyComponent },
   { path: '**', redirectTo: '' }
 ];

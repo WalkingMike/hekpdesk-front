@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
 import { TokenStorageService } from './token-storage.service';
 
-@Injectable()
-export class AuthGuardService implements CanActivate {
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
 
   constructor(
     public tokenStorage: TokenStorageService,
@@ -12,7 +14,7 @@ export class AuthGuardService implements CanActivate {
 
   canActivate(): boolean {
     if (!this.tokenStorage.getToken()) {
-      this.router.navigate(['login']);
+      this.router.navigateByUrl('/login');
       return false;
     }
     return true;

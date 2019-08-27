@@ -16,16 +16,17 @@
       </div>
       <div class="form-group">
         <button id="loginBtn">Login</button>
-        <div *ngIf="f.invalid" class="errorWarning">
-          Incorrect data! Fill in all fields!<br />
-        </div>
-        <div *ngIf="f.submitted && isLoginFailed" class="alertWarning">
-          SignIn failed! {{errorMessage}}<br />
-        </div>
       </div>
     </form>
+    <div *ngIf="f.invalid" class="errorWarning">
+        Incorrect data! Fill in all fields!<br />
+      </div>
+      <div *ngIf="f.submitted && isLoginFailed" class="alertWarning">
+        SignIn failed! {{errorMessage}}<br />
+      </div>
     <hr>
-    <p>Don't have an account?</p>
-    <a routerLink='/register'>Sign Up</a>
+    <div id="register">Don't have an account?
+      <a routerLink='/register'> Sign Up! </a>
+    </div>
   </ng-template>
 </div>

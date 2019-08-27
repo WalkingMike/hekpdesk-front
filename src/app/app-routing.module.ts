@@ -7,12 +7,14 @@ import { TopicCreationComponent } from './topic-creation/topic-creation.componen
 import { ReplyComponent } from './reply/reply.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuardService as AuthGuard } from './auth/services/auth-guard.service';
+import { AuthGuard } from './auth/services/auth-guard.guard';
+import { NegateAuthGuard } from './auth/services/negate-auth-guard.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent,
+    canActivate: [NegateAuthGuard] },
   { path: 'topics', component: TopicFeedComponent, },
   { path: 'topics/create', component: TopicCreationComponent,
     canActivate: [AuthGuard] },

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../auth/services/auth.service';
 import { SignUpInfo } from '../auth/models/signup-info';
+import { RegionService } from '../services/region.service';
 
 @Component({
   selector: 'app-register',
@@ -14,10 +15,19 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
+  regions = [];
+  passType = 'password';
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private regionService: RegionService
+    ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.regionService.getRegions().subscribe(
+      regions => this.regions = regions
+    );
+  }
 
   onSubmit() {
     console.log(this.form);
@@ -26,7 +36,9 @@ export class RegisterComponent implements OnInit {
       this.form.name,
       this.form.login,
       this.form.email,
-      this.form.password);
+      this.form.password,
+      this.form.regionID
+    );
 
     this.authService.signUp(this.signupInfo).subscribe(
       data => {
@@ -40,5 +52,13 @@ export class RegisterComponent implements OnInit {
         this.isSignUpFailed = true;
       }
     );
+  }
+
+  visiblePass(): void {
+    if (this.passType === 'password') {
+      this.passType = 'text';
+    } else {
+      this.passType = 'password';
+    }
   }
 }

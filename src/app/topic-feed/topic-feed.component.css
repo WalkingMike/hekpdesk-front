@@ -4,8 +4,14 @@ ul {
 }
 #delInput{
   width: 65px;
+  border: 1px solid lightcoral;
 }
 .menu > *  {
   display: inline;
 }
-
+#delBtn {
+  background-color: lightcoral;
+}
+#createTop {
+  background-color: lightgreen;
+}

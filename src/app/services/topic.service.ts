@@ -39,4 +39,9 @@ export class TopicService {
     return this.http.post<Topic>(this.topicUrl + '/add', topic, this.httpOptions);
   }
 
+   /** POST topic on the server */
+   public editTopicContent(id: number, content: string): Observable<any>  {
+    return this.http.put<any>(this.topicUrl + '/modifycontent?id=' + id + '&content=' + content, this.httpOptions);
+  }
+
 }

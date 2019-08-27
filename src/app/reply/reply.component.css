@@ -17,8 +17,9 @@
   display: table;
   clear: both;
 }
-.button {
+button {
   float: right;
+  background-color: lightcoral;
 }
 .content {
   padding-left: 15px;

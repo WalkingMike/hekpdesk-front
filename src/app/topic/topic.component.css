@@ -3,15 +3,26 @@ div {
   font-style: bold;
 }
 .topicBorder {
-  border: 1px black solid;
   margin: 3px;
   text-align: center;
 }
 .topicBody {
+  border:  1px black solid;
   background-color: lightblue;
 }
 #deltop{
+  background-color: lightcoral;
   float: right;
+}
+#editSwitch, #saveEdit {
+  background-color: lightyellow;
+  display: block;
+  height: 25px;
+  margin-left: 90%;
+  width: 10%;
+}
+#addReply {
+  background-color: lightgreen;
 }
 .column {
   float: left;
@@ -33,4 +44,10 @@ div {
   padding-bottom: 10px;
   padding-top: 5px;
   text-align: left;
+}
+textarea {
+  overflow-y: scroll;
+  height: 300px;
+  resize: none;
+  width: 75%;
 }

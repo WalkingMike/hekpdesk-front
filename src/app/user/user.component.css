@@ -1,5 +1,28 @@
 .userBorder {
   border: 1px black solid;
   margin: 3px;
-  text-align: center;
 }
+#findUser {
+  margin: 4px;
+  margin-left: 72%;
+  padding: 4px;
+}
+#applyChanges {
+  margin: 4px;
+  margin-left: 72%;
+  padding: 4px;
+}
+.info {
+  margin: 5px;
+}
+.field {
+  text-align: right;
+  margin: 5px;
+}
+.chngLabel {
+  float: left;
+}
+input {
+  width: 30%;
+}
+

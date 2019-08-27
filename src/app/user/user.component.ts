@@ -12,6 +12,7 @@ import { TokenStorageService } from '../auth/services/token-storage.service';
 export class UserComponent implements OnInit {
   user: User = new User();
   authority = '';
+  passType = 'password';
 
   constructor(
     private userService: UserService,
@@ -20,14 +21,29 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.authority = this.tokenStorage.getAuthority();
+    this.getUser(this.tokenStorage.getLogin());
   }
 
   getUser(login: string): void {
     this.userService.getUserByLogin(login).subscribe(usr => this.user = usr);
   }
 
-  onSubmit(f: NgForm) {
+  onFindUser(f: NgForm) {
     this.getUser(f.value.login);
+  }
+
+  visiblePass(): void {
+    if (this.passType === 'password') {
+      this.passType = 'text';
+    } else {
+      this.passType = 'password';
+    }
+  }
+
+  onAdminChanges(g: NgForm) {
+  }
+
+  onUserChanges(k: NgForm) {
   }
 
 }

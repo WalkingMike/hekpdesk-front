@@ -1,34 +1,46 @@
-<div *ngIf="isSignedUp; else signupForm">
-  Your registration is successful. Please login!
-</div>
-
-<ng-template #signupForm>
-  <div class="row-column" style="max-width:350px;">
-    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="name">Your name  </label>
-        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
-      </div>
-      <div class="form-group">
-        <label for="login">Login  </label>
-        <input type="text" class="form-control" name="login" [(ngModel)]="form.login" #login="ngModel"
-          required />
-      </div>
-      <div class="form-group">
-        <label for="email">Email  </label>
-        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
-      </div>
-      <div class="form-group">
-        <label for="password">Password  </label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-          required minlength="6" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary">Register</button>
-        <div *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
-          Signup failed!<br/>
-        </div>
-      </div>
-    </form>
+<div class="registerBorder">
+  <div *ngIf="isSignedUp; else signupForm">
+    Your registration is successful. Please login!
   </div>
-</ng-template>
+  <div id="signupForm">
+    <ng-template #signupForm>
+      <div class="row-column">
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm">
+          <div class="form-group">
+            <label for="name">Your name:  </label>
+            <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+          </div>
+          <div class="form-group">
+            <label for="login">Login:  </label>
+            <input type="text" class="form-control" name="login" [(ngModel)]="form.login" #login="ngModel"
+              required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:  </label>
+            <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:  </label>
+            <input id="passInput" type={{passType}} class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
+              required minlength="6" /> <input type="checkbox" (change)="visiblePass()">Show Password
+          </div>
+          <div class="form-group">
+            <label for="regionID">Region:  </label>
+            <select [(ngModel)]="form.regionID" name="regionID" required>
+              <option *ngFor="let reg of regions" [ngValue]="reg.id">{{reg.region}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button id="registerBtn"> Register </button>
+            <div *ngIf="f.invalid" class="errorWarning">
+                Incorrect data! Fill in all fields!<br/>
+            </div>
+            <div *ngIf="f.submitted && isSignUpFailed" class="alertWarning">
+              Signup failed! {{errorMessage}}<br/>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+</div>

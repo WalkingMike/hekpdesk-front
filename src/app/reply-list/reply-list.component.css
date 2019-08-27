@@ -1,4 +1,7 @@
 ul {
   list-style: none;
-  padding: 5px;
+  margin: 10px;
+}
+li {
+  margin: 10px;
 }

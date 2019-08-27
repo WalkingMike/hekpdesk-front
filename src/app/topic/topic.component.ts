@@ -5,6 +5,8 @@ import { TokenStorageService } from '../auth/services/token-storage.service';
 import { UserService } from '../services/user.service';
 import { User } from '../models/user';
 import { Region } from '../models/region';
+import { TopicService } from '../services/topic.service';
+import { registerLocaleData } from '@angular/common';
 
 
 @Component({
@@ -16,14 +18,17 @@ export class TopicComponent implements OnInit {
   @Input() topic: Topic;
   @Input() regions: Region[];
   topicRegion = '';
-  showReply: boolean;
-  addReply: boolean;
+  showReply = false;
+  addReply = false;
+  editMode = false;
   authority: string;
   currentUserID: number;
   creator: string[] = [];
+  content = '';
 
   constructor(
     private topicFeed: TopicFeedComponent,
+    private topicService: TopicService,
     private tokenStorage: TokenStorageService,
     private userService: UserService
   ) { }
@@ -40,6 +45,7 @@ export class TopicComponent implements OnInit {
     this.regions.forEach( reg => {
       if (this.topic.regionID === reg.id) { this.topicRegion = reg.region; }
     });
+    this.content = this.topic.content;
   }
 
   deleteTopic(): void {
@@ -47,10 +53,19 @@ export class TopicComponent implements OnInit {
   }
 
   switchShowReply(): void {
-    this.showReply = ! this.showReply;
+    this.showReply = !this.showReply;
   }
 
   switchAddReply(): void {
-    this.addReply = ! this.addReply;
+    this.addReply = !this.addReply;
+  }
+
+  switchEditMode(): void {
+    this.editMode = !this.editMode;
+  }
+
+  saveEdit(): void {
+    this.topicService.editTopicContent(this.topic.id, this.content).subscribe();
+    this.switchEditMode();
   }
 }

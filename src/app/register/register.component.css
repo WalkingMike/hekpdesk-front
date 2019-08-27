@@ -1,3 +1,19 @@
 .row-column {
   max-width: 500px;
 }
+.form-group {
+  margin: 5px;
+}
+.registerBorder {
+  border: 1px black solid;
+  margin: 3px;
+}
+.alertWarning, .errorWarning {
+  margin: 2px;
+}
+.alertWarning {
+  background-color: yellow;
+}
+.errorWarning {
+  background-color: orangered;
+}

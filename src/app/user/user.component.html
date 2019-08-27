@@ -1,13 +1,47 @@
 <div class="userBorder">
   <div *ngIf="authority === 'admin'" class="adminOpt">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-      <p>login: <input type="string" name="login" ngModel></p>
+    <form #f="ngForm" (ngSubmit)="onFindUser(f)" novalidate>
+      <div class="info"><label>id: {{user.id}}</label> </div>
+      <hr>
+      <div class="info"><label>register date: {{user.registerDate | date:"dd.MM.yy, HH:mm"}}</label> </div>
+      <hr>
+      <div class="info"><label>email: {{user.email}}</label> </div>
+      <hr>
+      <div class="field"><label class="chngLabel">login: {{user.login}}</label><input type="text" name="login" ngModel></div>
+      <!-- <div class="info"><label>login: </label><input type="text" name="login" ngModel> </div> -->
+      <hr>
+      <button id="findUser" type="submit"> Find user </button>
     </form>
-    <div><span>register date: </span>{{user.registerDate}}</div>
-    <div><span>region id: </span>{{user.regionID}}</div>
-    <div><span>role id: </span>{{user.roleID}}</div>
-    <div><span>name: </span>{{user.name}}</div>
-    <div><span>id: </span>{{user.id}}</div>
-    <div><span>password: </span>{{user.password}}</div>
+    <form #g="ngForm" (ngSubmit)="onAdminChanges(g)" novalidate>
+      <hr>
+      <div class = "field"><label class="chngLabel">name: {{user.name}}</label><input type="text" name="name" ngModel></div>
+      <hr>
+      <div class = "field"><label class="chngLabel">password: </label><input type="checkbox" (change)="visiblePass()">Show Password <input type={{passType}} name="password" ngModel></div>
+      <hr>
+      <div class = "field"><label class="chngLabel">region: {{user.regionID}}</label><input type="text" name="region" ngModel></div>
+      <hr>
+      <div class = "field"><label class="chngLabel">role: {{user.roleID}}</label><input type="text" name="role" ngModel></div>
+      <hr>
+      <button id="applyChanges"  type="submit"> Apply changes </button>
+    </form>
+  </div>
+  <div *ngIf="authority === 'user'; find" class="userOpt">
+    <div class="info"> <label>role: {{user.roleID}}</label> </div>
+    <hr>
+    <div class="info"> <label>register date: {{user.registerDate | date:"dd.MM.yy, HH:mm"}}</label> </div>
+    <hr>
+    <div class="info"> <label>email: {{user.email}}</label> </div>
+    <hr>
+    <div class="info"> <label>login: {{user.login}}</label> </div>
+    <form #k="ngForm" (ngSubmit)="onUserChanges(k)" novalidate>
+      <hr>
+      <div class = "field"><label class="chngLabel">name: {{user.name}}</label><input type="text" name="name" ngModel></div>
+      <hr>
+      <div class = "field"><label class="chngLabel">password: </label><input id="checkbox" type="checkbox" (change)="visiblePass()">Show Password <input type={{passType}} name="password" ngModel></div>
+      <hr>
+      <div class = "field"><label class="chngLabel">region: {{user.regionID}}</label><input type="text" name="region" ngModel></div>
+      <hr>
+      <button id="applyChanges"  type="submit"> Apply changes </button>
+    </form>
   </div>
 </div>

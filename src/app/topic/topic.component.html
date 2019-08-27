@@ -3,17 +3,22 @@
     <div id="head"><span>subject: </span>{{topic.subject}}</div>
     <div class="row">
         <div *ngIf="authority === 'admin'" class="column" ><span>id: </span>{{topic.id}}</div>
-        <button *ngIf="authority === 'admin' || currentUserID === topic.creatorID" id="deltop" class="button" (click)="deleteTopic()">Delete topic</button>
+        <button *ngIf="authority === 'admin' || currentUserID === topic.creatorID" id="deltop" (click)="deleteTopic()">Delete topic</button>
     </div>
     <div class="row">
       <div class="column">{{creator[0]}} ({{creator[1]}})  {{topic.topicDate | date:"dd.MM.yy, HH:mm"}}</div>
       <div class="column"><span>region: </span>{{topicRegion}}</div>
     </div>
     <hr>
-    <div class="content">{{topic.content}}</div>
+    <button *ngIf="authority === 'admin' || currentUserID === topic.creatorID" id="editSwitch" (click)="switchEditMode()">Edit content</button>
+    <div *ngIf="!editMode" class="content">{{content}}</div>
+    <div *ngIf="editMode">
+      <textarea id="content" [(ngModel)]="content"></textarea>
+      <button id="saveEdit" (click)="saveEdit()">Save edit</button>
+    </div>
     <hr>
     <button class="buttonBot" (click)="switchShowReply()" >Show replies</button>
-    <button *ngIf="authority !== 'lurker'" class="buttonBot" (click)="switchAddReply()" >Add reply</button>
+    <button *ngIf="authority !== 'lurker'" id="addReply" class="buttonBot" (click)="switchAddReply()" >Add reply</button>
   </div>
   <div *ngIf="showReply">
     <app-reply-list [topic]='topic' [authority]='authority' [currentUserID]='currentUserID'></app-reply-list>

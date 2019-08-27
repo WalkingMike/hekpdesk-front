@@ -1,21 +1,24 @@
-<a routerLink=""><h1 id="title">{{title | uppercase}}</h1></a>
+<a routerLink="">
+  <h1 id="title">{{title | uppercase}}</h1>
+</a>
 <div class="navPanel">
   <nav>
     <ul>
-      <li *ngIf="authority !== 'lurker'">
-          <div >
-            <a routerLink='' (click)="logOut()">Logout</a>
-          </div>
-      </li><li>
-        <div *ngIf="authority === 'lurker'">
-          <a routerLink='/login'>Login</a>
-        </div>
-        <div *ngIf="authority !== 'lurker'">
-          <a routerLink='/user'>User Profile</a>
-        </div>
-      </li><li>
-        <a routerLink="/topics">Topics</a>
-      </li>
+      <a routerLink='' (click)="logOut()">
+        <li *ngIf="authority !== 'lurker'">
+          Logout
+        </li>
+      </a><a routerLink='/login'>
+        <li *ngIf="authority === 'lurker'">Login
+        </li>
+      </a><a routerLink='/user'>
+        <li *ngIf="authority !== 'lurker'">
+          User Profile
+        </li>
+      </a><a routerLink="/topics">
+        <li>Topics
+        </li>
+      </a>
     </ul>
   </nav>
 </div>
@@ -23,5 +26,4 @@
   <router-outlet></router-outlet>
 </div>
 <div class="scrollPanel">
-  Nothing interesting here
 </div>

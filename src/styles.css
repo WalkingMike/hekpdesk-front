@@ -1,5 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 body {
+  font-size: 14pt;
   overflow-y: scroll;
-  min-width: 1000px;
+  min-width: 1100px;
+}
+button, select {
+  font-size: 12pt;
+}
+a {
+  text-decoration: none;
+}
+a * {
+  color: black;
+}
+a:hover li {
+  background-color: rgb(0, 90, 220);
+  border: 3px groove rgb(0, 100, 220);
 }

@@ -1,6 +1,7 @@
 .userBorder {
   border: 1px black solid;
   margin: 3px;
+  background-color: rgb(0, 160, 200);
 }
 #findUser {
   margin: 4px;
@@ -25,4 +26,9 @@
 input {
   width: 30%;
 }
-
+.ckeckbox {
+  display: inline-block;
+}
+select {
+  width: 30%;
+}

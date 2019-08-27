@@ -8,7 +8,11 @@ div {
 }
 .topicBody {
   border:  1px black solid;
-  background-color: lightblue;
+  background-color: rgb(0, 160, 200);
+}
+#head {
+  font-size: 18pt;
+  font-weight: bold;
 }
 #deltop{
   background-color: lightcoral;
@@ -17,7 +21,6 @@ div {
 #editSwitch, #saveEdit {
   background-color: lightyellow;
   display: block;
-  height: 25px;
   margin-left: 90%;
   width: 10%;
 }
@@ -44,10 +47,13 @@ div {
   padding-bottom: 10px;
   padding-top: 5px;
   text-align: left;
+  font-size: 14pt;
 }
 textarea {
+  font-size: 14pt;
   overflow-y: scroll;
   height: 300px;
   resize: none;
   width: 75%;
 }
+

@@ -2,8 +2,8 @@ import { HTTP_INTERCEPTORS, HttpEvent, HttpErrorResponse } from '@angular/common
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 import { TokenStorageService } from './token-storage.service';
-import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 const TOKEN_HEADER_KEY = 'Authorization';
@@ -15,7 +15,7 @@ export class AuthInterceptorService implements HttpInterceptor {
     private tokenStorage: TokenStorageService,
     private router: Router) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
     let authReq = req;
     const token = this.tokenStorage.getToken();
     if (token != null) {
@@ -26,15 +26,17 @@ export class AuthInterceptorService implements HttpInterceptor {
         err => {
           console.log(err);
           if (err instanceof HttpErrorResponse) {
-            console.log(err.status);
             console.log(err.statusText);
             if (err.status === 401) {
               this.tokenStorage.signOut();
-              window.location.reload();
               this.router.navigateByUrl('/login');
+              window.location.reload();
+            }
+            if (err.status === 500) {
+              console.log('EntityNotFound/ServerIssue');
             }
           }
-          return Observable.throw(err);
+          return throwError(err);
         })
     );
   }

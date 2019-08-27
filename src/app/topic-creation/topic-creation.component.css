@@ -1,3 +1,6 @@
+#creationBorder {
+  background-color: rgb(0, 160, 200);
+}
 #content {
   overflow-y: scroll;
   height: 300px;
@@ -23,4 +26,10 @@
 #buttonBot {
   width: 70%;
   height: 35px;
+}
+#head {
+  width: 75%;
+}
+select {
+  width: 50%;
 }

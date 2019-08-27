@@ -1,12 +1,10 @@
-.row-column {
-  max-width: 500px;
-}
 .form-group {
   margin: 5px;
 }
 .registerBorder {
   border: 1px black solid;
   margin: 3px;
+  background-color: rgb(0, 160, 200);
 }
 .alertWarning, .errorWarning {
   margin: 2px;

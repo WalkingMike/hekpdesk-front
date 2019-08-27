@@ -6,22 +6,21 @@
   <ng-template #loggedOut>
     <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
       <div class="form-group">
-        <label for="login">Login  </label>
-        <input type="text" class="form-control" name="login" [(ngModel)]="form.login" #login="ngModel"
-          required />
+        <label for="login">Login </label>
+        <input type="text" class="form-control" name="login" [(ngModel)]="form.login" #login="ngModel" required />
       </div>
       <div class="form-group">
-        <label for="password">Password  </label>
+        <label for="password">Password </label>
         <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
           required minlength="6" />
       </div>
       <div class="form-group">
         <button id="loginBtn">Login</button>
         <div *ngIf="f.invalid" class="errorWarning">
-            Incorrect data! Fill in all fields!<br/>
+          Incorrect data! Fill in all fields!<br />
         </div>
         <div *ngIf="f.submitted && isLoginFailed" class="alertWarning">
-          SignIn failed! {{errorMessage}}<br/>
+          SignIn failed! {{errorMessage}}<br />
         </div>
       </div>
     </form>

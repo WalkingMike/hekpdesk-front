@@ -3,10 +3,8 @@ import { Topic } from '../models/topic';
 import { TopicFeedComponent } from '../topic-feed/topic-feed.component';
 import { TokenStorageService } from '../auth/services/token-storage.service';
 import { UserService } from '../services/user.service';
-import { User } from '../models/user';
-import { Region } from '../models/region';
 import { TopicService } from '../services/topic.service';
-import { registerLocaleData } from '@angular/common';
+import { RegionService } from '../services/region.service';
 
 
 @Component({
@@ -16,7 +14,6 @@ import { registerLocaleData } from '@angular/common';
 })
 export class TopicComponent implements OnInit {
   @Input() topic: Topic;
-  @Input() regions: Region[];
   topicRegion = '';
   showReply = false;
   addReply = false;
@@ -30,7 +27,8 @@ export class TopicComponent implements OnInit {
     private topicFeed: TopicFeedComponent,
     private topicService: TopicService,
     private tokenStorage: TokenStorageService,
-    private userService: UserService
+    private userService: UserService,
+    private regionService: RegionService
   ) { }
 
   ngOnInit() {
@@ -42,9 +40,9 @@ export class TopicComponent implements OnInit {
     this.userService.getUserNameLoginByID(this.topic.creatorID).subscribe(
       data => this.creator = data
     );
-    this.regions.forEach( reg => {
-      if (this.topic.regionID === reg.id) { this.topicRegion = reg.region; }
-    });
+    this.regionService.getRegions().subscribe(
+      regs => this.topicRegion = regs.filter(reg => reg.id === this.topic.regionID)[0].region
+    );
     this.content = this.topic.content;
   }
 

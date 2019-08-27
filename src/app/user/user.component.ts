@@ -5,6 +5,9 @@ import { NgForm } from '@angular/forms';
 import { TokenStorageService } from '../auth/services/token-storage.service';
 import { RegionService } from '../services/region.service';
 import { Region } from '../models/region';
+import { RoleService } from '../services/role.service';
+import { Role } from '../models/role';
+
 
 @Component({
   selector: 'app-user',
@@ -12,31 +15,50 @@ import { Region } from '../models/region';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  user: User;
   authority = '';
-  passType = 'password';
-  regions: Region[];
+  user: User;
+  regions: Region[] = [];
+  roles: Role[] = [];
 
   constructor(
     private userService: UserService,
     private tokenStorage: TokenStorageService,
-    private regionService: RegionService
+    private regionService: RegionService,
+    private roleService: RoleService,
   ) { }
 
   ngOnInit() {
+    this.user = new User();
+    this.user.regionID = 0;
+    const aux1 = new Region();
+    aux1.id = 0;
+    aux1.region = 'Filler';
+    this.regions.push(aux1);
+    const aux2 = new Role();
+    aux2.id = 0;
+    aux2.roleDescription = 'lurker';
+    this.roles.push(aux2);
     this.authority = this.tokenStorage.getAuthority();
     this.getUser(this.tokenStorage.getLogin());
     this.regionService.getRegions().subscribe(data => this.regions = data);
+    this.roleService.getRoles().subscribe(data => this.roles = data);
   }
 
   getUser(login: string): void {
     this.userService.getUserByLogin(login).subscribe(usr => this.user = usr);
-    if (!this.user) { this.user = new User(null, '', '', '', '', null, null, null); }
   }
 
   getRegionName(id: number): string {
     if (this.user.regionID) {
-      return this.regions.filter(reg => reg.id === id)[0].region;
+      return this.regions.filter(reg => reg.id === id).pop().region;
+    } else {
+      return '';
+    }
+  }
+
+  getRoleName(id: number): string {
+    if (this.user.roleID) {
+      return this.roles.filter(rol => rol.id === id).pop().roleDescription;
     } else {
       return '';
     }
@@ -46,19 +68,43 @@ export class UserComponent implements OnInit {
     this.getUser(f.value.login);
   }
 
-  visiblePass(): void {
-    if (this.passType === 'password') {
-      this.passType = 'text';
-    } else {
-      this.passType = 'password';
-    }
-  }
-
   onAdminChanges(g: NgForm) {
-    console.log(g.value.name !== '');
+    const user = JSON.parse(JSON.stringify(this.user));
+    if (g.value.name && g.value.name !== this.user.name) {
+      user.name = g.value.name;
+    }
+    if (g.value.password) {
+      user.password = g.value.password;
+    } else { user.password = ' '; }
+    if (g.value.regionID && g.value.regionID !== this.user.regionID) {
+      user.regionID = g.value.regionID;
+    }
+    if (g.value.roleID && g.value.roleID !== this.user.roleID) {
+      user.roleID = g.value.roleID;
+    }
+    this.userService.createUser(user).subscribe(
+      () => {},
+      () => {},
+      () => this.getUser(this.user.login)
+    );
   }
 
   onUserChanges(k: NgForm) {
+    const user = JSON.parse(JSON.stringify(this.user));
+    if (k.value.name && k.value.name !== this.user.name) {
+      user.name = k.value.name;
+    }
+    if (k.value.password) {
+      user.password = k.value.password;
+    } else { user.password = ' '; }
+    if (k.value.regionID && k.value.regionID !== this.user.regionID) {
+      user.regionID = k.value.regionID;
+    }
+    this.userService.createUser(user).subscribe(
+      () => {},
+      () => {},
+      () => this.getUser(this.user.login)
+    );
   }
 
 }

@@ -2,90 +2,99 @@
   <div *ngIf="authority === 'admin'" class="adminOpt">
     <form #f="ngForm" (ngSubmit)="onFindUser(f)" novalidate>
       <div class="info">
-        <label>id: {{ user.id }}</label>
+        <label>id: {{ user?.id }}</label>
       </div>
       <hr />
       <div class="info">
         <label>register date:
-          {{ user.registerDate | date: "dd.MM.yy, HH:mm" }}</label>
+          {{ user?.registerDate | date: "dd.MM.yy, HH:mm" }}</label>
       </div>
       <hr />
       <div class="info">
-        <label>email: {{ user.email }}</label>
+        <label>email: {{ user?.email }}</label>
       </div>
       <hr />
       <div class="field">
-        <label class="chngLabel">login: {{ user.login }}</label><input type="text" name="login" ngModel />
+        <label class="chngLabel">login: {{ user?.login }}</label><input type="text" name="login" ngModel />
       </div>
       <hr />
       <button id="findUser" type="submit">Find user</button>
     </form>
-    <form #g="ngForm" (ngSubmit)="onAdminChanges(g)">
+    <form #g="ngForm" (ngSubmit)="g.valid && onAdminChanges(g)">
       <hr />
       <div class="field">
-        <label class="chngLabel">name: {{ user.name }}</label><input type="text" name="name" ngModel />
+        <label class="chngLabel">name: {{ user?.name }}</label><input type="text" name="name" ngModel
+          pattern="\S{3,}" />
       </div>
       <hr />
       <div class="field">
         <label class="chngLabel">password is hashed </label>
         <input type="text" name="password" ngModel
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" />
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,20}$" />
       </div>
       <hr />
       <div class="field">
-        <label class="chngLabel">region: {{ getRegionName(this.user.regionID) }}</label>
+        <label class="chngLabel">region: {{ getRegionName(this.user?.regionID) }}</label>
         <select ngModel name="regionID" required>
+          <option value="">Select region</option>
           <option *ngFor="let reg of regions" [ngValue]="reg.id">{{
-            reg.region
+            reg?.region
           }}</option>
         </select>
       </div>
       <hr />
       <div class="field">
-        <label class="chngLabel">role: {{ user.roleID }}</label><input type="text" name="role" ngModel />
+        <label class="chngLabel">role: {{ getRoleName(this.user?.roleID) }}</label><input type="text" name="role" ngModel />
       </div>
       <hr />
       <button id="applyChanges" type="submit">Apply changes</button>
     </form>
+    <div *ngIf="g.invalid" class="errorWarning">
+      Incorrect data! Check all fields!<br />
+    </div>
   </div>
   <div *ngIf="authority === 'user'; find" class="userOpt">
     <div class="info">
-      <label>role: {{ user.roleID }}</label>
+      <label>role: {{ user?.roleID }}</label>
     </div>
     <hr />
     <div class="info">
-      <label>register date: {{ user.registerDate | date: "dd.MM.yy, HH:mm" }}</label>
+      <label>register date: {{ user?.registerDate | date: "dd.MM.yy, HH:mm" }}</label>
     </div>
     <hr />
     <div class="info">
-      <label>email: {{ user.email }}</label>
+      <label>email: {{ user?.email }}</label>
     </div>
     <hr />
     <div class="info">
-      <label>login: {{ user.login }}</label>
+      <label>login: {{ user?.login }}</label>
     </div>
-    <form #k="ngForm" (ngSubmit)="onUserChanges(k)">
+    <form #k="ngForm" (ngSubmit)="k.valid && onUserChanges(k)">
       <hr />
       <div class="field">
-        <label class="chngLabel">name: {{ user.name }}</label><input type="text" name="name" ngModel />
+        <label class="chngLabel">name: {{ user?.name }}</label><input type="text" name="name" ngModel
+        pattern="\S{3,}"  />
       </div>
       <hr />
       <div class="field">
         <label class="chngLabel">password is hashed </label>
         <input type="text" name="password" ngModel
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" required />
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,20}$"/>
       </div>
       <hr />
       <div class="field">
-        <label class="chngLabel">region: {{ getRegionName(this.user.regionID) }}</label>
-        <select ngModel name="regionID" required>
+        <label class="chngLabel">region: {{ getRegionName(this.user?.regionID) }}</label>
+        <select ngModel name="regionID">
           <option *ngFor="let reg of regions" [ngValue]="reg.id">{{
-            reg.region
+            reg?.region
           }}</option>
         </select>
       </div>
       <hr />
       <button id="applyChanges" type="submit">Apply changes</button>
     </form>
+    <div *ngIf="k.invalid" class="errorWarning">
+      Incorrect data! Check all fields!<br />
+    </div>
   </div>
 </div>

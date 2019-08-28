@@ -8,7 +8,12 @@
         <li *ngIf="authority !== 'lurker'">
           Logout
         </li>
-      </a><a routerLink='/login'>
+      </a>
+      <a routerLink='/regions'>
+          <li *ngIf="authority === 'admin'">
+            Regions
+          </li>
+        </a><a routerLink='/login'>
         <li *ngIf="authority === 'lurker'">Login
         </li>
       </a><a routerLink='/user'>

@@ -1,6 +1,6 @@
 <div class="replyCreationBorder">
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
-    <span id="replyContent">Content: <input id="replyInput" type="text" name="replyContent" ngModel></span>
+  <form #f="ngForm" (ngSubmit)="f.valid && onSubmit(f)">
+    <span id="replyContent">Content: <input id="replyInput" type="text" name="replyContent" ngModel required pattern="\S{2,}"></span>
     <button>Add</button>
   </form>
 </div>

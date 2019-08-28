@@ -1,12 +1,13 @@
 <div id="creationBorder">
   <button id="back" (click)="goBack()">Back</button>
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+  <form #f="ngForm" (ngSubmit)="f.valid && onSubmit(f)">
     <div class="row">
       <div class="column1">
         Region:
       </div>
       <div class="column2">
-        <select [(ngModel)]="this.topic.regionID" [ngModelOptions]="{ standalone: true }">
+        <select ngModel name="regionID" required>
+          <option value="">Select region</option>
           <option *ngFor="let reg of regions" [ngValue]="reg.id">{{
             reg.region
           }}</option>
@@ -18,7 +19,7 @@
         Subject:
       </div>
       <div class="column2">
-        <input id="head" type="text" name="subject" ngModel />
+        <input id="head" type="text" name="subject" ngModel required pattern="\S{3,}"/>
       </div>
     </div>
     <div class="row">
@@ -26,7 +27,7 @@
         Content:
       </div>
       <div class="column2">
-        <textarea id="content" name="content" ngModel></textarea>
+        <textarea id="content" name="content" ngModel required></textarea>
       </div>
     </div>
     <div class="row">

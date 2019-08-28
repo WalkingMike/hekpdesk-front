@@ -18,6 +18,7 @@ import { RegisterComponent } from './register/register.component';
 import { httpInterceptorProviders } from './auth/services/auth-interceptor.service';
 import { AuthGuard } from './auth/services/auth-guard.guard';
 import { NegateAuthGuard } from './auth/services/negate-auth-guard.guard';
+import { RegionsComponent } from './regions/regions.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NegateAuthGuard } from './auth/services/negate-auth-guard.guard';
     ReplyListComponent,
     ReplyCreationComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    RegionsComponent
   ],
   imports: [
     AppRoutingModule,

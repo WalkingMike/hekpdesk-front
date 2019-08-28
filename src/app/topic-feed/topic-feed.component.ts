@@ -5,6 +5,7 @@ import { Topic } from '../models/topic';
 import { TokenStorageService } from '../auth/services/token-storage.service';
 import { Region } from '../models/region';
 import { RegionService } from '../services/region.service';
+import { UserService } from '../services/user.service';
 
 
 @Component({
@@ -23,16 +24,25 @@ export class TopicFeedComponent implements OnInit {
     private router: Router,
     private topicService: TopicService,
     private tokenStorage: TokenStorageService,
-    private regionService: RegionService
+    private regionService: RegionService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.getAllTopics();
     this.regionService.getRegions().subscribe(
       regs => this.regions = regs
     );
     this.authority = this.tokenStorage.getAuthority();
-    this.regionID = -1;
+    if (!this.tokenStorage.getToken()) {
+      this.regionID = -1;
+      this.showRegion(this.regionID);
+    } else {
+      this.userService.getUserByLogin(this.tokenStorage.getLogin()).subscribe(
+        user => {if (user.regionID) { this.regionID = user.regionID; } },
+        () => {},
+        () => this.showRegion(this.regionID)
+      );
+    }
   }
 
   getAllTopics(): void {
@@ -46,6 +56,8 @@ export class TopicFeedComponent implements OnInit {
       this.topicService.getTopicsByRegion(region).subscribe(
         data => this.topics = data
       );
+    } else {
+      this.getAllTopics();
     }
   }
 

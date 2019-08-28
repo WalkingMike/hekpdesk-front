@@ -33,24 +33,6 @@ export class ReplyListComponent implements OnInit {
       }));
   }
 
-  // getAllReplies(): void {
-  //   this.replies$ = this.replyService.getReplies();
-  //   this.replies$.subscribe();
-  // }
-
-  // getActualReplies(): Reply[] {
-  //   const replies: Reply[] = [];
-  //   this.replies$.subscribe( data => data
-  //     .forEach( element => {
-  //       if (element.topicID === this.topic.id) { replies.push(element); }
-  //     }));
-  //   return replies;
-  // }
-
-  // deleteReply(id: number): void {
-  //   this.replyService.deleteReply(id).subscribe();
-  // }
-
   deleteReply(id: number): void {
     this.replyService.deleteReply(id)
       .subscribe( data => {

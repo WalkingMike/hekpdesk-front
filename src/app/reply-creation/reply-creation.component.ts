@@ -6,6 +6,7 @@ import { Reply } from '../models/reply';
 import { TopicComponent } from '../topic/topic.component';
 import { TokenStorageService } from '../auth/services/token-storage.service';
 import { UserService } from '../services/user.service';
+import { ReplyListComponent } from '../reply-list/reply-list.component';
 
 
 @Component({

@@ -29,8 +29,6 @@ export class TopicService {
 
   /** DELETE topic from the server */
   public deleteTopic(id: number) {
-    // const httpParams = new HttpParams().set('id', id.toString());
-    // const options = {params: httpParams};
     return this.http.delete(this.topicUrl + '/remove?id=' + id, this.httpOptions);
   }
 

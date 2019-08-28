@@ -31,21 +31,6 @@ export class UserService {
     return this.http.get<string[]>(this.userUrl + 'NameLogin/?id=' + id);
   }
 
-  /** PUT user name on the server */
-  public setUserName(login: string, name: string): Observable<any> {
-    return this.http.put<any>(this.userUrl + '/modifyname?login=' + login + '&name=' + name, this.httpOptions);
-  }
-
-  /** PUT user password on the server */
-  public setUserPass(login: string, password: string): Observable<any> {
-    return this.http.put<any>(this.userUrl + '/modifypassword?login=' + login + '&password=' + password, this.httpOptions);
-  }
-
-  /** PUT user region on the server */
-  public setUserRegion(login: string, regionID: number): Observable<any> {
-    return this.http.put<any>(this.userUrl + '/modifyregion?login=' + login + '&regionID=' + regionID, this.httpOptions);
-  }
-
    /** GET user by Login from the server */
    public getUserByLogin(login: string): Observable<User> {
     return this.http.get<User>(this.userUrl + 'Login/?login=' + login);

@@ -44,7 +44,13 @@
       </div>
       <hr />
       <div class="field">
-        <label class="chngLabel">role: {{ getRoleName(this.user?.roleID) }}</label><input type="text" name="role" ngModel />
+        <label class="chngLabel">role: {{ getRoleName(this.user?.roleID) }}</label>
+        <select ngModel name="roleID" required>
+            <option value="">Select role</option>
+            <option *ngFor="let rol of roles" [ngValue]="rol.id">{{
+              rol?.roleDescription
+            }}</option>
+          </select>
       </div>
       <hr />
       <button id="applyChanges" type="submit">Apply changes</button>
@@ -54,10 +60,6 @@
     </div>
   </div>
   <div *ngIf="authority === 'user'; find" class="userOpt">
-    <div class="info">
-      <label>role: {{ user?.roleID }}</label>
-    </div>
-    <hr />
     <div class="info">
       <label>register date: {{ user?.registerDate | date: "dd.MM.yy, HH:mm" }}</label>
     </div>
@@ -73,18 +75,19 @@
       <hr />
       <div class="field">
         <label class="chngLabel">name: {{ user?.name }}</label><input type="text" name="name" ngModel
-        pattern="\S{3,}"  />
+          pattern="\S{3,}" />
       </div>
       <hr />
       <div class="field">
         <label class="chngLabel">password is hashed </label>
         <input type="text" name="password" ngModel
-          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,20}$"/>
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,20}$" />
       </div>
       <hr />
       <div class="field">
         <label class="chngLabel">region: {{ getRegionName(this.user?.regionID) }}</label>
-        <select ngModel name="regionID">
+        <select ngModel name="regionID" required>
+          <option value="">Select region</option>
           <option *ngFor="let reg of regions" [ngValue]="reg.id">{{
             reg?.region
           }}</option>

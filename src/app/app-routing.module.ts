@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth/services/auth-guard.guard';
 import { NegateAuthGuard } from './auth/services/negate-auth-guard.guard';
+import { RegionsComponent } from './regions/regions.component';
+import { AdminGuard } from './auth/services/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
     canActivate: [AuthGuard] },
   { path: 'user', component: UserComponent,
     canActivate: [AuthGuard] },
+  { path: 'regions', component: RegionsComponent,
+    canActivate: [AdminGuard] },
   { path: 'reply', component: ReplyComponent },
   { path: '**', redirectTo: '' }
 ];

@@ -1,0 +1,31 @@
+.regionsBorder{
+  border: 1px black solid;
+  margin: 3px;
+  background-color: rgb(0, 160, 200);
+}
+ul {
+  list-style: none;
+}
+li {
+  text-align: center;
+  border: 1px black solid;
+  margin: 5px;
+}
+p {
+  margin: 0;
+  text-align: center;
+}
+label {
+  margin: 2px;
+}
+input {
+  width: 15%;
+  margin: 2px;
+}
+button {
+  margin: 2px;
+}
+#addingRegion {
+  text-align: center;
+  margin: 5px;
+}

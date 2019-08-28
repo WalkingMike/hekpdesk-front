@@ -3,18 +3,21 @@
     <p>Currently regions are:</p>
     <ul class="regs">
       <li *ngFor="let reg of regions">
-        <div>
-          <label>id: {{reg.id}} region: {{reg.region}} </label><input id="modifyReg" type="text" name="regionNew" #regionMod ngModel/>
-          <button (click)="modifyRegion(reg, regionMod.value)">Modify</button>
-        </div>
+        <form #g="ngForm" (ngSubmit)="g.valid && modifyRegion(reg, g.value.regionMod)">
+          <label>id: {{reg.id}} region: {{reg.region}} </label><input id="modifyReg" type="text" name="regionMod"
+            ngModel required pattern="\S{3,}" />
+          <button>Modify</button>
+        </form>
       </li>
     </ul>
   </div>
   <div class="NoRegions" *ngIf="regions.length === 0">
     <p>No regions exist! Add some.</p>
   </div>
-  <div id="addingRegion">
-    <label> region: </label><input id="newReg" type="text" name="regionNew" #regionNew ngModel/>
-    <button (click)="modifyRegion(this.regionAux, regionNew.value)">Add region</button>
-  </div>
+  <form #f="ngForm" (ngSubmit)="f.valid && modifyRegion(this.regionAux, f.value.regionNew)">
+    <div id="addingRegion">
+      <label> region: </label><input id="newReg" type="text" name="regionNew" ngModel required pattern="\S{3,}" />
+      <button> Add region </button>
+    </div>
+  </form>
 </div>

@@ -6,7 +6,8 @@
 }
 .column {
   float: left;
-  width: 32%;
+  text-align: left;
+  width: 40%;
   padding: 1px;
 }
 .row{

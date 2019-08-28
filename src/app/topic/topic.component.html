@@ -8,7 +8,7 @@
     </div>
     <div class="row">
       <div class="column">{{creator[0]}} ({{creator[1]}}) {{topic.topicDate | date:"dd.MM.yy, HH:mm"}}</div>
-      <div class="column">{{topicRegion}} region</div>
+      <div id="regColumn" class="column">{{topicRegion}} region</div>
     </div>
     <hr>
     <button *ngIf="authority === 'admin' || currentUserID === topic.creatorID" id="editSwitch"

@@ -29,8 +29,12 @@ div {
 }
 .column {
   float: left;
+  text-align: left;
   width: 32%;
   padding: 2px;
+}
+#regColumn {
+  text-align: center;
 }
 .row:after {
   content: "";

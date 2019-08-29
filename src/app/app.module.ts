@@ -11,7 +11,6 @@ import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { TopicFeedComponent } from './topic-feed/topic-feed.component';
 import { TopicCreationComponent } from './topic-creation/topic-creation.component';
-import { ReplyListComponent } from './reply-list/reply-list.component';
 import { ReplyCreationComponent } from './reply-creation/reply-creation.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -29,7 +28,6 @@ import { RegionsComponent } from './regions/regions.component';
     HomeComponent,
     TopicFeedComponent,
     TopicCreationComponent,
-    ReplyListComponent,
     ReplyCreationComponent,
     LoginComponent,
     RegisterComponent,

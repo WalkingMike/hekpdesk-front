@@ -1,5 +1,5 @@
 <div class="regionsBorder">
-  <div *ngIf="regions.length > 0">
+  <div *ngIf="regions?.length > 0">
     <p>Currently regions are:</p>
     <ul class="regs">
       <li *ngFor="let reg of regions">
@@ -11,7 +11,7 @@
       </li>
     </ul>
   </div>
-  <div class="NoRegions" *ngIf="regions.length === 0">
+  <div class="NoRegions" *ngIf="regions?.length === 0">
     <p>No regions exist! Add some.</p>
   </div>
   <form #f="ngForm" (ngSubmit)="f.valid && modifyRegion(this.regionAux, f.value.regionNew)">

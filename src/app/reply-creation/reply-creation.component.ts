@@ -6,7 +6,6 @@ import { Reply } from '../models/reply';
 import { TopicComponent } from '../topic/topic.component';
 import { TokenStorageService } from '../auth/services/token-storage.service';
 import { UserService } from '../services/user.service';
-import { ReplyListComponent } from '../reply-list/reply-list.component';
 
 
 @Component({
@@ -35,7 +34,11 @@ export class ReplyCreationComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.reply.replyText = f.value.replyContent;
     this.reply.replyDate = new Date();
-    this.replyService.createReply(this.reply).subscribe();
+    this.replyService.createReply(this.reply).subscribe(
+      () => {},
+      () => {},
+      () => { this.topicComp.getAllReplies(); }
+    );
     this.topicComp.switchAddReply();
   }
 }

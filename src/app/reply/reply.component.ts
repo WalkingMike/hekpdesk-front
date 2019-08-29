@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Reply } from '../models/reply';
-import { ReplyListComponent } from '../reply-list/reply-list.component';
 import { UserService } from '../services/user.service';
+import { TopicComponent } from '../topic/topic.component';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class ReplyComponent implements OnInit {
   author: string[] = [];
 
   constructor(
-    private replyList: ReplyListComponent,
+    private topicComp: TopicComponent,
     private userService: UserService
   ) { }
 
@@ -27,7 +27,7 @@ export class ReplyComponent implements OnInit {
   }
 
   deleteReply(): void {
-    this.replyList.deleteReply(this.reply.id);
+    this.topicComp.deleteReply(this.reply.id);
   }
 
 }

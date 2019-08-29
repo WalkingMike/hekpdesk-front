@@ -23,7 +23,16 @@
     <button *ngIf="authority !== 'lurker'" id="addReply" class="buttonBot" (click)="switchAddReply()">Add reply</button>
   </div>
   <div *ngIf="showReply">
-    <app-reply-list [topic]='topic' [authority]='authority' [currentUserID]='currentUserID'></app-reply-list>
+    <div *ngIf="replies.length > 0">
+      <ul class="repls">
+        <li *ngFor="let reply of replies">
+          <app-reply [reply]="reply" [authority]='authority' [currentUserID]='currentUserID'></app-reply>
+        </li>
+      </ul>
+    </div>
+    <div class="NoReplies" *ngIf="replies.length === 0">
+      No replies. Be the first to comment!
+    </div>
   </div>
   <div *ngIf="addReply">
     <app-reply-creation [topic]='topic'></app-reply-creation>

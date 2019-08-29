@@ -61,7 +61,7 @@ export class TopicComponent implements OnInit {
 
   getAllReplies(): void {
     this.replyService.getRepliesByTopic(this.topic.id)
-    .subscribe( data => {this.replies = data; console.log(data); });
+    .subscribe( data => this.replies = data );
   }
 
   deleteReply(id: number): void {

@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private tokenStorage: TokenStorageService,
+    protected tokenStorage: TokenStorageService,
     private regionService: RegionService,
     private roleService: RoleService,
   ) { }
@@ -45,14 +45,20 @@ export class UserComponent implements OnInit {
   }
 
   getUser(login: string): void {
-    this.userService.getUserByLogin(login).subscribe(usr => this.user = usr);
+    const dummy = new User();
+    dummy.id = -1;
+    dummy.email = 'not found';
+    dummy.login = 'not found';
+    dummy.name = 'not found';
+    dummy.registerDate = new Date('-1');
+    this.userService.getUserByLogin(login).subscribe(usr => { if (usr !== null) {this.user = usr; } else {this.user = dummy; }});
   }
 
   getRegionName(id: number): string {
     if (this.user.regionID) {
       return this.regions.filter(reg => reg.id === id).pop().region;
     } else {
-      return '';
+      return 'not found';
     }
   }
 
@@ -60,12 +66,16 @@ export class UserComponent implements OnInit {
     if (this.user.roleID) {
       return this.roles.filter(rol => rol.id === id).pop().roleDescription;
     } else {
-      return '';
+      return 'not found';
     }
   }
 
   onFindUser(f: NgForm) {
-    this.getUser(f.value.login);
+    if (f.value.login === '') {
+      this.getUser(this.tokenStorage.getLogin());
+    } else {
+      this.getUser(f.value.login);
+    }
   }
 
   onAdminChanges(g: NgForm) {
@@ -83,8 +93,8 @@ export class UserComponent implements OnInit {
       user.roleID = g.value.roleID;
     }
     this.userService.createUser(user).subscribe(
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       () => this.getUser(this.user.login)
     );
   }
@@ -101,8 +111,8 @@ export class UserComponent implements OnInit {
       user.regionID = k.value.regionID;
     }
     this.userService.createUser(user).subscribe(
-      () => {},
-      () => {},
+      () => { },
+      () => { },
       () => this.getUser(this.user.login)
     );
   }

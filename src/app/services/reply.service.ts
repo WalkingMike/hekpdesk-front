@@ -17,15 +17,19 @@ export class ReplyService {
 
   constructor(private http: HttpClient) {}
 
-  /** GET replys from the server */
+  /** GET replies from the server */
   public getReplies(): Observable<Reply[]> {
     return this.http.get<Reply[]>(this.replyUrl + '/selectall');
   }
 
+
+  /** GET replies by topicID from the server */
+  public getRepliesByTopic(id: number): Observable<Reply[]> {
+    return this.http.get<Reply[]>(this.replyUrl + '/selectall/topic?id=' + id);
+  }
+
   /** DELETE reply from the server */
   public deleteReply(id: number) {
-    // const httpParams = new HttpParams().set('id', id.toString());
-    // const options = {params: httpParams};
     return this.http.delete(this.replyUrl + '/remove?id=' + id, this.httpOptions);
   }
 

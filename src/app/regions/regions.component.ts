@@ -17,7 +17,7 @@ export class RegionsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.regionService.getRegions().subscribe(data => this.regions = data);
+    this.regionService.getRegions().subscribe(data => this.regions = data.sort((a, b) => a.id - b.id));
   }
 
   modifyRegion(reg: Region, name: string) {

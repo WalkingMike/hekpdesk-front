@@ -5,6 +5,8 @@ import { TokenStorageService } from '../auth/services/token-storage.service';
 import { UserService } from '../services/user.service';
 import { TopicService } from '../services/topic.service';
 import { RegionService } from '../services/region.service';
+import { Reply } from '../models/reply';
+import { ReplyService } from '../services/reply.service';
 
 
 @Component({
@@ -21,6 +23,7 @@ export class TopicComponent implements OnInit {
   authority: string;
   currentUserID: number;
   creator: string[] = [];
+  replies: Reply[] = [];
   content = '';
 
   constructor(
@@ -28,7 +31,8 @@ export class TopicComponent implements OnInit {
     private topicService: TopicService,
     private tokenStorage: TokenStorageService,
     private userService: UserService,
-    private regionService: RegionService
+    private regionService: RegionService,
+    private replyService: ReplyService
   ) { }
 
   ngOnInit() {
@@ -44,6 +48,7 @@ export class TopicComponent implements OnInit {
       regs => this.topicRegion = regs.filter(reg => reg.id === this.topic.regionID)[0].region
     );
     this.content = this.topic.content;
+    this.getAllReplies();
   }
 
   deleteTopic(): void {
@@ -52,6 +57,18 @@ export class TopicComponent implements OnInit {
 
   switchShowReply(): void {
     this.showReply = !this.showReply;
+  }
+
+  getAllReplies(): void {
+    this.replyService.getRepliesByTopic(this.topic.id)
+    .subscribe( data => {this.replies = data; console.log(data); });
+  }
+
+  deleteReply(id: number): void {
+    this.replyService.deleteReply(id)
+      .subscribe( data => {
+        this.replies = this.replies.filter(r => r.id !== id);
+      });
   }
 
   switchAddReply(): void {
@@ -66,4 +83,5 @@ export class TopicComponent implements OnInit {
     this.topicService.editTopicContent(this.topic.id, this.content).subscribe();
     this.switchEditMode();
   }
+
 }

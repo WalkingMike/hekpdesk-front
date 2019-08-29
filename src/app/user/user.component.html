@@ -1,6 +1,6 @@
 <div class="userBorder">
   <div *ngIf="authority === 'admin'" class="adminOpt">
-    <form #f="ngForm" (ngSubmit)="onFindUser(f)" novalidate>
+    <form #f="ngForm" (ngSubmit)="onFindUser(f)">
       <div class="info">
         <label>id: {{ user?.id }}</label>
       </div>
